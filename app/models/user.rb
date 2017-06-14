@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   def generate_unique_token
     loop do
-      token = SecureRandom.base64.tr('+/=', 'Qrt')
+      token = SecureRandom.hex
       break token unless User.exists?(token: token)
     end
   end

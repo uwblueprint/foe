@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 20170612135948) do
     t.string "name"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["oauth_token"], name: "index_users_on_oauth_token", unique: true
+    t.index ["token"], name: "index_users_on_token", unique: true
   end
 
 end

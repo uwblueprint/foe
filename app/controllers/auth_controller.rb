@@ -2,6 +2,8 @@ class AuthController < ApplicationController
   skip_before_action :authenticate, only: [:create]
 
   def create
+    render json: { token: "static_token" }
+
     if params[:provider] != "facebook"
       return render json: {error: :provider_not_supported}, status: bad_request
     end

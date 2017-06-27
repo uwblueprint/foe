@@ -2,11 +2,17 @@ require 'httparty'
 
 # Adapted from https://gist.github.com/mad-raz/a60714f968e1178f0717
 module Omniauth
+  class PermissionError < StandardError
+  end
+
+  class ResponseError < StandardError
+  end
+
   class Facebook
     include HTTParty
 
     # The base uri for facebook graph API
-    base_uri 'https://graph.facebook.com/v2.3'
+    base_uri 'https://graph.facebook.com/v2.9'
 
     # Used to authenticate app with facebook user
     # Usage
@@ -42,6 +48,7 @@ module Omniauth
 
     def get_access_token(code)
       response = self.class.get('/oauth/access_token', query(code))
+      binding.pry
 
       # Something went wrong either wrong configuration or connection
       unless response.success?
@@ -72,8 +79,8 @@ module Omniauth
         query: {
           code: code,
           redirect_uri: "http://localhost:9000/",
-          client_id: ENV['FACEBOOK_APP_ID'],
-          client_secret: ENV['FACEBOOK_APP_SECRET']
+          client_id: Rails.application.secrets.facebook[:app_id],
+          client_secret: Rails.application.secrets.facebook[:app_secret]
         }
       }
     end

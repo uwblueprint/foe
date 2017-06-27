@@ -1,36 +1,21 @@
 require "test_helper"
 
 class AuthControllerTest < ActionDispatch::IntegrationTest
-  test "should return successfully with token" do
-    stub = { name: "dinah" }, "token-123"
+  setup do
+    @user = users(:one)
+  end
 
-    Omniauth::Facebook.stub :authenticate, stub do
+  test "should throw error for invalid provider" do
+    post "/auth/invalid", params: { code: "1234" }
+    assert_response 400
+    assert_includes @response.body, "provider_not_supported"
+  end
+
+  test "should return successfully with token" do
+    User.stub :from_code, @user do
       post "/auth/facebook", params: { code: "1234" }
       assert_response :success
       assert_not_empty response_json['token']
     end
-  end
-
-  test "should create a user" do
-    assert_difference("User.count", 1) do
-      stub = { name: "dinah" }, "token-123"
-
-      Omniauth::Facebook.stub :authenticate, stub do
-        post "/auth/facebook", params: { code: "1234" }
-      end
-    end
-  end
-
-  test "should not create a duplicate user" do
-    @user = users(:one)
-    assert_no_difference("User.count") do
-      stub = { name: "new_name" }, @user.oauth_token
-
-      Omniauth::Facebook.stub :authenticate, stub do
-        post "/auth/facebook", params: { code: "1234" }
-      end
-    end
-
-    assert_equal("new_name", @user.reload.name)
   end
 end

@@ -6,9 +6,30 @@ class UserTest < ActiveSupport::TestCase
     assert user.valid?
   end
 
-  test "invalid without oauth token" do
-    user = User.new()
-    refute user.valid?
-    assert_not_nil user.errors[:oauth_token]
+  def test_from_code
+    assert_difference("User.count", 1) do
+      user_stub = { "id": "foo", "name": "Dinah" }
+
+      Facebook.stub :access_token, "bar" do
+        Facebook.stub :user_hash, user_stub do
+          User.from_code("1234")
+        end
+      end
+    end
+  end
+
+  def test_from_code_with_existing_user
+    @user = users(:one)
+
+    assert_no_difference("User.count") do
+      user_stub = { "id" => @user.uid, "name" => "New Name" }
+
+      Facebook.stub :access_token, @user.oauth_token do
+        Facebook.stub :user_hash, user_stub do
+          existing_user = User.from_code("1234")
+          assert_equal "New Name", existing_user.name
+        end
+      end
+    end
   end
 end

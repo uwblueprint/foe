@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
 
   def authenticate
     begin
-      authenticate_with_http_token do |token, options|
+      authenticate_or_request_with_http_token do |token, options|
         @current_user = User.find_by!(token: token)
       end
     rescue ActiveRecord::RecordNotFound

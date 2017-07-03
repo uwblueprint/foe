@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weather: sunny
+  habitat: roadside
+  image_url: MyString
+  date: 2017-07-03
+
+two:
+  weather: sunny
+  habitat: roadside
+  image_url: MyString
+  date: 2017-07-03

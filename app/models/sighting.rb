@@ -1,4 +1,5 @@
 class Sighting < ApplicationRecord
+  belongs_to :user
 
   ALL_WEATHER = %w(sunny cloudy rain windy other)
   ALL_HABITAT = [

@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703182747) do
+ActiveRecord::Schema.define(version: 2017_07_03_182747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "sightings", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "weather"
     t.string "habitat"
     t.string "image_url"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sightings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,4 +38,5 @@ ActiveRecord::Schema.define(version: 20170703182747) do
     t.index ["token"], name: "index_users_on_token", unique: true
   end
 
+  add_foreign_key "sightings", "users"
 end

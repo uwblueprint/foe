@@ -16,7 +16,6 @@ class SightingsController < ApplicationController
   # POST /sightings.json
   def create
     @sighting = Sighting.new(sighting_params)
-
     if @sighting.save
       render :show, status: :created, location: @sighting
     else
@@ -48,6 +47,8 @@ class SightingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sighting_params
-      params.require(:sighting).permit(:weather, :habitat, :image_url, :date)
+      params.require(:sighting)
+        .permit(:weather, :habitat, :image_url, :date)
+	.merge({ user: @current_user})
     end
 end

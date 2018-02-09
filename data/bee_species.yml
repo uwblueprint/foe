@@ -1,0 +1,81 @@
+- common_name: "Common eastern bumble bee"
+  binomial_name: "bombus impatiens"
+  conservation_status:
+- common_name: "Tri-coloured bumble bee"
+  binomial_name: "bombus tenarius"
+  conservation_status:
+- common_name: "Red-belted bumble bee"
+  binomial_name: "bombus rufocinctus"
+  conservation_status:
+- common_name: "Two-spotted bumble bee"
+  binomial_name: "bombus bimaculatus"
+  conservation_status:
+- common_name: "Northern amber bumble bee"
+  binomial_name: "bombus borealis"
+  conservation_status:
+- common_name: "Half-black bumble bee"
+  binomial_name: "bombus vagans"
+  conservation_status:
+- common_name: "Rusty-patched bumble bee"
+  binomial_name: "bombus affinis"
+  conservation_status: "endangered"
+- common_name: "Brown-belted bumble bee"
+  binomial_name: "bombus griseocollis"
+  conservation_status:
+- common_name: "Lemon cuckoo bumble bee"
+  binomial_name: "bombus citrinus"
+  conservation_status:
+- common_name: "Confusing bumble bee"
+  binomial_name: "bombus perplexus"
+  conservation_status:
+- common_name: "American bumble bee"
+  binomial_name: "bombus pensylvanicus"
+  conservation_status:
+- common_name: "Forest bumble bee"
+  binomial_name: "bombus sylvicola"
+  conservation_status:
+- common_name: "Sanderson bumble bee"
+  binomial_name: "bombus sandersoni"
+  conservation_status:
+- common_name: "Nevada bumble bee"
+  binomial_name: "bombus nevadensis"
+  conservation_status:
+- common_name: "Black and gold bumble bee"
+  binomial_name: "bombus auricomus"
+  conservation_status:
+- common_name: "Yellow-banded bumble bee"
+  binomial_name: "bombus terricola"
+  conservation_status: "needs protection"
+- common_name: "Yellow bumble bee"
+  binomial_name: "bombus fervidus"
+  conservation_status:
+- common_name: "Yellow head bumble bee"
+  binomial_name: "bombus flavifrons"
+  conservation_status:
+- common_name: "Common western bumble bee"
+  binomial_name: "bombus occidentalis"
+  conservation_status: "needs protection"
+- common_name: "Black tail bumble bee"
+  binomial_name: "bombus melanopygus"
+  conservation_status:
+- common_name: "Two-form bumble bee"
+  binomial_name: "bombus bifarius"
+  conservation_status:
+- common_name: "Hunt bumble bee"
+  binomial_name: "bombus huntii"
+  conservation_status:
+- common_name: "Vosnesensky bumble bee"
+  binomial_name: "bombus vosnesenski"
+  conservation_status:
+- common_name: "Cryptic bumble bee"
+  binomial_name: "bombus cryptarum"
+  conservation_status:
+- common_name: "Fuzzy-horned bumble bee"
+  binomial_name: "bombus mixtus"
+  conservation_status:
+- common_name: "Central bumble bee"
+  binomial_name: "bombus centralis"
+  conservation_status:
+- common_name: "Gypsy cuckoo bumble bee"
+  binomial_name: "bombus bohemicus"
+  conservation_status: "endangered"

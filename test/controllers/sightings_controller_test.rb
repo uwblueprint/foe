@@ -12,11 +12,13 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create sighting" do
+    file = fixture_file_upload('files/bee_logo.png', 'image/png')
     params = {
       sighting: {
         date: @sighting.date,
         habitat: @sighting.habitat,
-        weather: @sighting.weather
+        weather: @sighting.weather,
+        image: file
       }
     }
 
@@ -27,17 +29,30 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
   end
 
+  test "should return 422 for invalid sighting" do
+    params = {
+      sighting: {
+        date: @sighting.date,
+      }
+    }
+
+    authenticated_post sightings_url, params
+    assert_response 422
+  end
+
   test "should show sighting" do
     authenticated_get sighting_url(@sighting)
     assert_response :success
   end
 
   test "should update sighting" do
+    file = fixture_file_upload('files/bee_logo.png', 'image/png')
     params = {
       sighting: {
         date: @sighting.date,
         habitat: @sighting.habitat,
-        weather: @sighting.weather
+        weather: @sighting.weather,
+        image: file
       }
     }
 

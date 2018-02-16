@@ -16,7 +16,6 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
       sighting: {
         date: @sighting.date,
         habitat: @sighting.habitat,
-        image_url: @sighting.image_url,
         weather: @sighting.weather
       }
     }
@@ -38,7 +37,6 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
       sighting: {
         date: @sighting.date,
         habitat: @sighting.habitat,
-        image_url: @sighting.image_url,
         weather: @sighting.weather
       }
     }

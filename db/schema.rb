@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2018_02_13_023715) do
     t.bigint "user_id"
     t.string "weather"
     t.string "habitat"
-    t.string "image_url"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

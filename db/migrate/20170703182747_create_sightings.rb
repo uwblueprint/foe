@@ -4,7 +4,6 @@ class CreateSightings < ActiveRecord::Migration[5.1]
       t.belongs_to :user, foreign_key: true
       t.string :weather
       t.string :habitat
-      t.string :image_url
       t.date :date
 
       t.timestamps

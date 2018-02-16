@@ -17,7 +17,7 @@ class SightingsController < ApplicationController
   def create
     @sighting = Sighting.new(sighting_params)
     if @sighting.save
-      @sighting.image.attach(params.dig(:sighting, :image))
+      @sighting.image.attach(params[:sighting][:image])
       render :show, status: :created, location: @sighting
     else
       render json: @sighting.errors, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class SightingsController < ApplicationController
   # PATCH/PUT /sightings/1.json
   def update
     if @sighting.update(sighting_params)
-      @sighting.image.attach(params.dig(:sighting, :image))
+      @sighting.image.attach(params[:sighting][:image])
       render :show, status: :ok, location: @sighting
     else
       render json: @sighting.errors, status: :unprocessable_entity

@@ -6,14 +6,15 @@ class User < ApplicationRecord
     user.token ||= generate_unique_token
   end
 
-  def self.from_code(code)
-    access_token = Facebook.access_token(code)
+  def self.from_code(access_token)
+    # access token is validated but not persisted
+    access_token_info = Facebook.access_token_info(access_token)
     user_hash = Facebook.user_hash(access_token)
 
     user = User.find_or_create_by!(uid: user_hash["id"])
     user.update!(
       name: user_hash["name"],
-      oauth_token: access_token,
+      # oauth_token: access_token,
     )
     user
   end

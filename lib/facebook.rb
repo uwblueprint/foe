@@ -1,6 +1,6 @@
 class Facebook
-  def self.access_token(code)
-    Koala::Facebook::OAuth.new.get_access_token(code)
+  def self.access_token_info(access_token)
+    Koala::Facebook::API.new.debug_token(access_token)
   end
 
   def self.user_hash(access_token)

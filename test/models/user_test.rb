@@ -42,10 +42,13 @@ class UserTest < ActiveSupport::TestCase
 
     assert_no_difference("User.count") do
       user_stub = { "id" => @user.uid, "name" => "New Name" }
+      access_token_info_stub = { "data": { "is_valid": true } }
 
-      Facebook.stub :user_hash, user_stub do
-        existing_user = User.from_code("1234")
-        assert_equal "New Name", existing_user.name
+      Facebook.stub :access_token_info, access_token_info_stub do
+        Facebook.stub :user_hash, user_stub do
+          existing_user = User.from_code("1234")
+          assert_equal "New Name", existing_user.name
+        end
       end
     end
   end

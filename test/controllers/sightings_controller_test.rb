@@ -14,17 +14,14 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
   test "should create sighting" do
     file = fixture_file_upload('files/bee_logo.png', 'image/png')
     base64_file = Base64.encode64(file.tempfile.open.read.force_encoding(Encoding::UTF_8))
-    file_hash = {
-      file: "data:image/png;base64,#{base64_file}",
-      filename: file.original_filename
-    }
 
     params = {
       sighting: {
-        date: @sighting.date,
         habitat: @sighting.habitat,
         weather: @sighting.weather,
-        image: file_hash
+        image: {
+          file: "data:image/png;base64,#{base64_file}"
+        },
       }
     }
 
@@ -56,17 +53,14 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
   test "should update sighting" do
     file = fixture_file_upload('files/bee_logo.png', 'image/png')
     base64_file = Base64.encode64(file.tempfile.open.read.force_encoding(Encoding::UTF_8))
-    file_hash = {
-      file: "data:image/png;base64,#{base64_file}",
-      filename: file.original_filename
-    }
 
     params = {
       sighting: {
-        date: @sighting.date,
         habitat: @sighting.habitat,
         weather: @sighting.weather,
-        image: file_hash
+        image: file_hash = {
+          file: "data:image/png;base64,#{base64_file}",
+        },
       }
     }
 

@@ -59,6 +59,7 @@ class SightingsController < ApplicationController
 
   def base64_to_uploaded_file(raw_base64, filename)
     data = extract_data(raw_base64)
+    filename ||= "#{SecureRandom.urlsafe_base64}"
     return nil if data.nil?
 
     tempfile = Tempfile.new(filename)

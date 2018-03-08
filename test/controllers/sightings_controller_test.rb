@@ -12,20 +12,37 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create sighting" do
+    file = fixture_file_upload('files/bee_logo.png', 'image/png')
+    base64_file = Base64.encode64(file.tempfile.open.read.force_encoding(Encoding::UTF_8))
+
     params = {
       sighting: {
-        date: @sighting.date,
         habitat: @sighting.habitat,
-        image_url: @sighting.image_url,
-        weather: @sighting.weather
+        weather: @sighting.weather,
+        image: {
+          file: "data:image/png;base64,#{base64_file}"
+        },
       }
     }
 
     assert_difference('Sighting.count') do
-      authenticated_post sightings_url, params
+      assert_difference('ActiveStorage::Attachment.count', 1) do
+        authenticated_post sightings_url, params
+      end
     end
 
     assert_response 201
+  end
+
+  test "should return 422 for invalid sighting" do
+    params = {
+      sighting: {
+        date: @sighting.date,
+      }
+    }
+
+    authenticated_post sightings_url, params
+    assert_response 422
   end
 
   test "should show sighting" do
@@ -34,16 +51,23 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update sighting" do
+    file = fixture_file_upload('files/bee_logo.png', 'image/png')
+    base64_file = Base64.encode64(file.tempfile.open.read.force_encoding(Encoding::UTF_8))
+
     params = {
       sighting: {
-        date: @sighting.date,
         habitat: @sighting.habitat,
-        image_url: @sighting.image_url,
-        weather: @sighting.weather
+        weather: @sighting.weather,
+        image: file_hash = {
+          file: "data:image/png;base64,#{base64_file}",
+        },
       }
     }
 
-    authenticated_put sighting_url(@sighting), params
+    assert_difference('ActiveStorage::Attachment.count', 1) do
+      authenticated_put sighting_url(@sighting), params
+    end
+
     assert_response 200
   end
 

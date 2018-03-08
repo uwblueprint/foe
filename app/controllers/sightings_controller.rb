@@ -17,6 +17,8 @@ class SightingsController < ApplicationController
   def create
     @sighting = Sighting.new(sighting_params)
     if @sighting.save
+      image = base64_to_uploaded_file(params[:sighting][:image][:file], params[:sighting][:image][:filename])
+      @sighting.image.attach(image)
       render :show, status: :created, location: @sighting
     else
       render json: @sighting.errors, status: :unprocessable_entity
@@ -27,6 +29,8 @@ class SightingsController < ApplicationController
   # PATCH/PUT /sightings/1.json
   def update
     if @sighting.update(sighting_params)
+      image = base64_to_uploaded_file(params[:sighting][:image][:file], params[:sighting][:image][:filename])
+      @sighting.image.attach(image)
       render :show, status: :ok, location: @sighting
     else
       render json: @sighting.errors, status: :unprocessable_entity
@@ -40,15 +44,45 @@ class SightingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sighting
-      @sighting = Sighting.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def sighting_params
-      params.require(:sighting)
-        .permit(:weather, :habitat, :image_url, :date)
-	.merge({ user: @current_user})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sighting
+    @sighting = Sighting.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def sighting_params
+    params.require(:sighting)
+      .permit(:weather, :habitat, :date)
+      .merge({ user: @current_user})
+  end
+
+  def base64_to_uploaded_file(raw_base64, filename)
+    data = extract_data(raw_base64)
+    filename ||= "#{SecureRandom.urlsafe_base64}"
+    return nil if data.nil?
+
+    tempfile = Tempfile.new(filename)
+    tempfile.binmode
+    tempfile.write(Base64.decode64(data))
+    tempfile.rewind
+
+    ActionDispatch::Http::UploadedFile.new(
+      tempfile: tempfile,
+      filename: "#{filename}.jpg",
+      original_filename: "#{filename}.jpg"
+    )
+  end
+
+  def extract_data(data)
+    return nil unless data.is_a? String
+
+    start_regex = /data:image\/[a-z]{3,4};base64,/
+    regex_result = start_regex.match(data)
+
+    return nil unless data && regex_result
+
+    start = regex_result.to_s
+    data[start.length..-1]
+  end
 end

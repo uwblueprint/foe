@@ -1,0 +1,14 @@
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+amazon:
+  service: S3
+  access_key_id: <%= Rails.application.secrets.aws[:access_key_id] %>
+  secret_access_key: <%= Rails.application.secrets.aws[:secret_access_key] %>
+  region: ca-central-1
+  bucket: foe-bee-tracker

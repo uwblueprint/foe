@@ -17,8 +17,8 @@ class ActiveSupport::TestCase
   end
 
   %w(get post put delete).each do |action|
-    define_method("authenticated_#{action}") do |url, params=nil|
-      send(action, url, params: params, as: :json, headers: { 'HTTP_AUTHORIZATION': request_token(@user) })
+    define_method("authenticated_#{action}") do |url, params={}|
+      send(action, url, params: params.merge(format: :json), headers: { 'HTTP_AUTHORIZATION': request_token(@user) })
     end
   end
 end

@@ -1,4 +1,5 @@
 class Sighting < ApplicationRecord
+  has_one_attached :image
   belongs_to :user
 
   ALL_WEATHER = %w(sunny cloudy rain windy other)
@@ -18,5 +19,4 @@ class Sighting < ApplicationRecord
 
   validates :weather, presence: true, inclusion: { in: ALL_WEATHER }
   validates :habitat, presence: true, inclusion: { in: ALL_HABITAT }
-
 end

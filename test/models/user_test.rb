@@ -38,7 +38,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_from_code_with_existing_user
-    @user = users(:one)
+    @user = users(:user_one)
 
     assert_no_difference("User.count") do
       user_stub = { "id" => @user.uid, "name" => "New Name" }

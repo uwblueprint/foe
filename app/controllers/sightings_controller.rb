@@ -53,7 +53,7 @@ class SightingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def sighting_params
     params.require(:sighting)
-      .permit(:weather, :habitat, :date)
+      .permit(:weather, :habitat, :latitude, :longitude, :date)
       .merge({ user: @current_user})
   end
 

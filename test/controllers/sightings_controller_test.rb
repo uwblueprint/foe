@@ -2,8 +2,8 @@ require 'test_helper'
 
 class SightingsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @sighting = sightings(:one)
-    @user = users(:one)
+    @sighting = sightings(:sighting_one)
+    @user = users(:user_one)
   end
 
   test "should get index" do
@@ -19,19 +19,20 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
       sighting: {
         habitat: @sighting.habitat,
         weather: @sighting.weather,
+        latitude: @sighting.latitude,
+        longitude: @sighting.longitude,
         image: {
           file: "data:image/png;base64,#{base64_file}"
         },
       }
     }
 
-    assert_difference('Sighting.count') do
-      assert_difference('ActiveStorage::Attachment.count', 1) do
+    assert_difference('ActiveStorage::Attachment.count', 1) do
+      assert_difference('Sighting.count') do
         authenticated_post sightings_url, params
+        assert_response 201
       end
     end
-
-    assert_response 201
   end
 
   test "should return 422 for invalid sighting" do
@@ -58,6 +59,8 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
       sighting: {
         habitat: @sighting.habitat,
         weather: @sighting.weather,
+        latitude: @sighting.latitude,
+        longitude: @sighting.longitude,
         image: file_hash = {
           file: "data:image/png;base64,#{base64_file}",
         },
@@ -66,16 +69,14 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference('ActiveStorage::Attachment.count', 1) do
       authenticated_put sighting_url(@sighting), params
+      assert_response 200
     end
-
-    assert_response 200
   end
 
   test "should destroy sighting" do
     assert_difference('Sighting.count', -1) do
       authenticated_delete sighting_url(@sighting)
+      assert_response 204
     end
-
-    assert_response 204
   end
 end

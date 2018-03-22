@@ -2,7 +2,7 @@ require "test_helper"
 
 class AuthControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:user_one)
   end
 
   test "should respond 400 for invalid provider" do

@@ -17,6 +17,17 @@ class Sighting < ApplicationRecord
     "other"
   ]
 
+  validates :latitude, presence: true, numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
+  validates :longitude, presence: true, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
+
   validates :weather, presence: true, inclusion: { in: ALL_WEATHER }
   validates :habitat, presence: true, inclusion: { in: ALL_HABITAT }
+  validates :species, inclusion: { in: BeeSpecies.all.map(&:binomial_name), allow_nil: true }
+
+  def location
+    @location ||= Location.new(latitude, longitude)
+  end
+end
+
+class Location < Struct.new(:latitude, :longitude)
 end

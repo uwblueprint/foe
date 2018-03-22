@@ -19,6 +19,7 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
       sighting: {
         habitat: @sighting.habitat,
         weather: @sighting.weather,
+        date: @sighting.date,
         latitude: @sighting.latitude,
         longitude: @sighting.longitude,
         image: {

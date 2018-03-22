@@ -21,5 +21,13 @@ class SightingTest < ActiveSupport::TestCase
     @sighting = sightings(:sighting_one)
     @sighting.species = 'bombus_invalid'
     assert_not @sighting.valid?
+    assert_includes @sighting.errors.messages[:species], "is not included in the list"
+  end
+
+  test "postdated sighting" do
+    @sighting = sightings(:sighting_one)
+    @sighting.date = Date.today + 1
+    assert_not @sighting.valid?
+    assert_includes @sighting.errors.messages[:date], "can't be in the future"
   end
 end

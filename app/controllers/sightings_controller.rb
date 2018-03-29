@@ -1,5 +1,6 @@
 class SightingsController < ApplicationController
   before_action :set_sighting, only: [:show, :update, :destroy]
+  skip_before_action :authenticate, only: [:index]
 
   # GET /sightings
   # GET /sightings.json

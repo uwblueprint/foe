@@ -3,6 +3,9 @@ require 'test_helper'
 class SightingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @sighting = sightings(:sighting_one)
+    image = fixture_file_upload('files/bee_logo.png', 'image/png')
+    @sighting.image.attach(image)
+
     @user = users(:user_one)
   end
 
@@ -22,12 +25,13 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
     authenticated_get sighting_url(@sighting)
 
     assert_equal response_json['id'], @sighting.id
-    assert_equal response_json['species'], @sighting.species
     assert_equal response_json['weather'], @sighting.weather
     assert_equal response_json['latitude'], @sighting.latitude
     assert_equal response_json['longitude'], @sighting.longitude
     assert_equal response_json['habitat'], @sighting.habitat
     assert_equal response_json['date'], @sighting.date.to_s
+
+    assert_not_empty response_json['image_url']
   end
 
   test "should create sighting" do
@@ -82,10 +86,8 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
       }
     }
 
-    assert_difference('ActiveStorage::Attachment.count', 1) do
-      authenticated_put sighting_url(@sighting), params
-      assert_response 200
-    end
+    authenticated_put sighting_url(@sighting), params
+    assert_response 200
   end
 
   test "should destroy sighting" do

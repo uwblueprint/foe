@@ -9,6 +9,14 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     authenticated_get sightings_url
     assert_response :success
+
+    response_json.each { |s| assert Sighting.find(s['id']).user == @user }
+  end
+
+  test "should show sighting" do
+    authenticated_get sighting_url(@sighting)
+    assert_response :success
+  end
   end
 
   test "should create sighting" do
@@ -45,11 +53,6 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
 
     authenticated_post sightings_url, params
     assert_response 422
-  end
-
-  test "should show sighting" do
-    authenticated_get sighting_url(@sighting)
-    assert_response :success
   end
 
   test "should update sighting" do

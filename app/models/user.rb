@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-
   validates :token, presence: true
+
+  has_many :sightings
 
   after_initialize do |user|
     user.token ||= generate_unique_token

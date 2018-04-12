@@ -17,6 +17,17 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
     authenticated_get sighting_url(@sighting)
     assert_response :success
   end
+
+  test "should build correct json" do
+    authenticated_get sighting_url(@sighting)
+
+    assert_equal response_json['id'], @sighting.id
+    assert_equal response_json['species'], @sighting.species
+    assert_equal response_json['weather'], @sighting.weather
+    assert_equal response_json['latitude'], @sighting.latitude
+    assert_equal response_json['longitude'], @sighting.longitude
+    assert_equal response_json['habitat'], @sighting.habitat
+    assert_equal response_json['date'], @sighting.date.to_s
   end
 
   test "should create sighting" do

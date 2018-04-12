@@ -4,7 +4,7 @@ class SightingsController < ApplicationController
   # GET /sightings
   # GET /sightings.json
   def index
-    @sightings = @current_user.sightings.order(date: :desc)
+    @sightings = @current_user.sightings.order(date: :desc).limit(10)
   end
 
   # GET /sightings/1

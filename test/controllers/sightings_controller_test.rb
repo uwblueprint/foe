@@ -7,6 +7,7 @@ class SightingsControllerTest < ActionDispatch::IntegrationTest
     @sighting.image.attach(image)
 
     @user = users(:user_one)
+    sign_in @user
   end
 
   test "should get index" do

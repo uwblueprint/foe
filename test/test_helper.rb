@@ -12,13 +12,14 @@ class ActiveSupport::TestCase
     JSON.parse(response.body)
   end
 
-  def request_token(user)
-    ActionController::HttpAuthentication::Token.encode_credentials(user.token)
+  # Replicate logged in state by generating the first auth token
+  def sign_in(user)
+    @user.create_new_auth_token
   end
 
   %w(get post put delete).each do |action|
-    define_method("authenticated_#{action}") do |url, params={}|
-      send(action, url, params: params.merge(format: :json), headers: { 'HTTP_AUTHORIZATION': request_token(@user) })
+    define_method("authenticated_#{action}") do |url, params={}, headers={}|
+      send(action, url, params: params.merge(format: :json), headers: headers.merge!(@user.create_new_auth_token))
     end
   end
 end

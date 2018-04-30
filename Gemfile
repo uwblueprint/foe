@@ -11,7 +11,6 @@ gem 'puma', '~> 3.7'
 gem 'jbuilder', '~> 2.5'
 
 gem 'devise_token_auth'
-gem 'figaro'
 gem 'koala'
 gem 'static_collection'
 gem 'aws-sdk-s3', require: false

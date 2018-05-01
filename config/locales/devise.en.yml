@@ -1,0 +1,7 @@
+en:
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: "Welcome to the Great Canadian Bumble Bee Count!"
+      reset_password_instructions:
+        subject: "Reset password request"

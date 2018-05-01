@@ -26,14 +26,24 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
+  
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: Rails.application.secrets.mailer[:host] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name:      Rails.application.secrets.mailer[:username],
+    password:       Rails.application.secrets.mailer[:password],
+    domain:         Rails.application.secrets.mailer[:host],
+    address:       'smtp.gmail.com',
+    port:          '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

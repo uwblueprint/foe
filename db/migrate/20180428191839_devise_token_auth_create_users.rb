@@ -1,6 +1,10 @@
 class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
   def self.up
     change_table(:users) do |t|
+      t.remove :token
+      t.remove :oauth_token
+      t.remove :oauth_expires_at
+
       ## Required
       t.string :provider, :null => false, :default => "email"
       t.change :uid, :string, :null => false, :default => ""

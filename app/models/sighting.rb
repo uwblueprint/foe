@@ -2,7 +2,7 @@ class Sighting < ApplicationRecord
   has_one_attached :image
   belongs_to :user
 
-  ALL_WEATHER = %w(sunny cloudy rain windy other)
+  ALL_WEATHER = %w(sunny partly_cloudy cloudy rain)
   ALL_HABITAT = [
     "back_yard",
     "balcony/container_garden",
@@ -24,7 +24,7 @@ class Sighting < ApplicationRecord
 
   validates :weather, presence: true, inclusion: { in: ALL_WEATHER }
   validates :habitat, presence: true, inclusion: { in: ALL_HABITAT }
-  validates :species, inclusion: { in: BeeSpecies.all.map(&:binomial_name), allow_nil: true }
+  validates :species, inclusion: { in: BeeSpecies.all.map(&:binomial_name) }
 
   def date_cannot_be_in_the_future
     if date > Date.today

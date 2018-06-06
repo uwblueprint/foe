@@ -24,7 +24,7 @@ class Sighting < ApplicationRecord
 
   validates :weather, presence: true, inclusion: { in: ALL_WEATHER }
   validates :habitat, presence: true, inclusion: { in: ALL_HABITAT }
-  validates :species, inclusion: { in: BeeSpecies.all.map(&:binomial_name) }
+  validates :species, inclusion: { in: BeeSpecies.all.map(&:binomial_name), allow_nil: true }
 
   def date_cannot_be_in_the_future
     if date > Date.today

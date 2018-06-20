@@ -1,5 +1,17 @@
 <p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Thank you for signing up to Friends of the Earth's - Great Canadian Bumble Bee Count! Please confirm your account email through the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token, redirect_url: message['redirect-url']) %></p>
+
+<p>Not enough is known about wild, native bees in Canada, and what scientists do know is worrying. By taking part, you’ll learn about over 40 species of Canada’s bumble bees and ways you can help them.</p>
+
+<p>By acting together to save the bees and other pollinators, we can make a difference for our food security, for wildlife and, overall, to protect biodiversity.</p>
+
+<p>
+  The FOE Team<br>
+  <a href="mailto:gcbbc@foecanada.org">gcbbc@foecanada.org</a><br>
+  <a href="http://foecanada.org">www.foecanada.org</a><br>
+  <a href="https://twitter.com/FoE_Canada">Twitter</a><br>
+  <a href="https://www.facebook.com/foe.canada">Facebook</a>
+</p>

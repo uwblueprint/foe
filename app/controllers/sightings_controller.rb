@@ -5,7 +5,7 @@ class SightingsController < ApplicationController
   # GET /sightings
   # GET /sightings.json
   def index
-    @sightings = @current_user.sightings.order(date: :desc).limit(10)
+    @sightings = @current_user.sightings.order(date: :desc)
   end
 
   # GET /sightings/1
@@ -54,7 +54,7 @@ class SightingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def sighting_params
     params.require(:sighting)
-      .permit(:weather, :habitat, :latitude, :longitude, :date, :species)
+      .permit(:weather, :habitat, :latitude, :longitude, :date, :species, :street_address)
       .merge({ user: @current_user})
   end
 

@@ -63,7 +63,7 @@ Rails.application.configure do
     user_name:      Rails.application.secrets.mailer[:username],
     password:       Rails.application.secrets.mailer[:password],
     domain:         Rails.application.secrets.mailer[:host],
-    address:       'smtp.gmail.com',
+    address:       'mail.foecanada.org',
     port:          '587',
     authentication: :plain,
     enable_starttls_auto: true

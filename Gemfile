@@ -14,6 +14,7 @@ gem 'devise_token_auth'
 gem 'koala'
 gem 'static_collection'
 gem 'aws-sdk-s3', require: false
+gem 'sendgrid-ruby'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

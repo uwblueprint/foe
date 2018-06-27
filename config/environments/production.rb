@@ -60,11 +60,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Rails.application.secrets.mailer[:host] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name:      ENV['SENDGRID_USERNAME'],
-    password:       ENV['SENDGRID_PASSWORD'],
+    user_name:      "apikey",
+    password:       Rails.application.secrets.mailer[:sendgrid_api_key],
     domain:         Rails.application.secrets.mailer[:host],
-    address:       'smtp.sendgrid.net',
-    port:          587,
+    address:        'smtp.sendgrid.net',
+    port:           587,
     authentication: :plain,
     enable_starttls_auto: true
   }

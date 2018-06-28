@@ -49,5 +49,5 @@ DeviseTokenAuth.setup do |config|
   # A verification email will be sent to the email address provided. Upon
   # clicking the link in the confirmation email, the API will redirect to the
   # URL specified in confirm_success_url
-  config.default_confirm_success_url = 'http://foecanada.org/'
+  config.default_confirm_success_url = Rails.application.secrets.devise[:confirm_success_url]
 end

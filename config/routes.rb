@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   end
 
   resources :sightings
+
+  match 'confirm', to: 'pages#confirm', via: [:get]
 end

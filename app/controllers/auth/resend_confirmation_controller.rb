@@ -1,6 +1,6 @@
 class Auth::ResendConfirmationController < ApplicationController
   def create
-    @email = params[:email]
+    @email = params[:email].downcase
     @user = User.find_by(email: @email)
 
     if @user && !@user.confirmed?

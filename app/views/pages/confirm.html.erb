@@ -1,0 +1,158 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Signup Complete | The Great Canadian Bumblebee Count</title>
+  <meta name="author" content="FOE Canada">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+  <link rel="icon" type="image/png" sizes="32x32" href=<%= image_url "favicon-32x32.png" %>>
+  <link rel="shortcut icon" href=<%= image_url "favicon.ico" %> type="image/x-icon">
+  <link rel="icon" href=<%= image_url "favicon.ico" %> type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,600,700" rel="stylesheet">
+
+  <style type="text/css">
+
+    body {
+      margin: 0;
+    }
+
+    h1, h2, p, a {
+      color: #333;
+      font-family: 'Nunito Sans', sans-serif;
+
+    }
+
+    div.logo {
+      padding: 32px 0 0;
+    }
+    .logo > h2 {
+      display: inline-block;
+      max-width: 200px;
+      margin: 8px;
+      vertical-align: top;
+    }
+
+    .logo > img {
+      margin-top: 0px;
+    }
+
+    a {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .confirmation-message > a {
+      text-decoration: none;
+      color: #1EC063;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 700;
+      margin: 12px 0 0;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 20px;
+    }
+
+    .container {
+      width: 900px;
+      margin: 0 auto;
+    }
+
+    .confirmation-message {
+      text-align: center;
+      width: 540px;
+      margin: 0 auto;
+    }
+
+    .confirmation-message > img {
+      width: 83px;
+      height: 63px;
+    }
+
+    .aligner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+    }
+
+    footer {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      background-color: #F6F6F6;
+      padding: 12px 0;
+    }
+
+    footer > a {
+      color: #979797;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    @media only screen and (max-width: 900px) {
+
+      .confirmation-message > img {
+        width: 43px;
+        height: 33px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p, a {
+        font-size: 16px;
+      }
+      div.logo {
+        padding: 12px 24px 0;
+      }
+
+      .container {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .confirmation-message {
+        width: 100%;
+        padding: 0 40px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo">
+    <%= image_tag("logo.png", height: "48", width: "48") %>
+    <h2> The Great Canadian Bumblebee Count</h2>
+    </div>
+  </div>
+  <div class="aligner">
+    <div class="confirmation-message">
+      <%= image_tag "green-checkmark.png" %>
+      <h1> You're all set! </h1>
+      <p> You may now return to the app and login with your email&nbsp;and&nbsp;password. Buzz&nbsp;buzz! </p>
+      <a href="javascript:window.open('','_self').close();"> Close this window</a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="http://foecanada.org/en/">Go to foecanada.org</a>
+  </footer>
+</body>

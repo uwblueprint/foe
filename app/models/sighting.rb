@@ -2,7 +2,7 @@ class Sighting < ApplicationRecord
   has_one_attached :image
   belongs_to :user
 
-  ALL_WEATHER = %w(sunny cloudy rain windy other)
+  ALL_WEATHER = %w(sunny partly_cloudy cloudy rain)
   ALL_HABITAT = [
     "back_yard",
     "balcony/container_garden",

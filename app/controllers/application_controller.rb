@@ -1,17 +1,11 @@
 class ApplicationController < ActionController::Base
-  include ActionController::HttpAuthentication::Token::ControllerMethods
+  include DeviseTokenAuth::Concerns::SetUserByToken
 
-  before_action :authenticate
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
-  def authenticate
-    begin
-      authenticate_or_request_with_http_token do |token, options|
-        @current_user = User.find_by!(token: token)
-      end
-    rescue ActiveRecord::RecordNotFound
-      render json: {}, status: 401
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password])
   end
 end

@@ -2,7 +2,7 @@
   binomial_name: "bombus_impatiens"
   conservation_status:
 - common_name: "Tri-coloured bumble bee"
-  binomial_name: "bombus_tenarius"
+  binomial_name: "bombus_ternarius"
   conservation_status:
 - common_name: "Red-belted bumble bee"
   binomial_name: "bombus_rufocinctus"
@@ -79,3 +79,6 @@
 - common_name: "Gypsy cuckoo bumble bee"
   binomial_name: "bombus_bohemicus"
   conservation_status: "endangered"
+- common_name: "Unidentified"
+  binomial_name: "unidentified"
+  conservation_status:

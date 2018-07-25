@@ -9,6 +9,14 @@ sighting_one:
   date: 2017-07-03
 
 sighting_two:
+  user: user_one
+  weather: rain
+  habitat: back_yard
+  latitude: 43.4697504
+  longitude: -80.5423533
+  date: 2018-06-03
+
+sighting_three:
   user: user_two
   weather: sunny
   habitat: roadside

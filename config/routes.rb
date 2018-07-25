@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :sightings
-  post 'auth/:provider', to: 'auth#create'
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :auth do
+    resources :resend_confirmation, only: [:create]
+  end
+
+  resources :sightings
+
+  match 'confirm', to: 'pages#confirm', via: [:get]
 end

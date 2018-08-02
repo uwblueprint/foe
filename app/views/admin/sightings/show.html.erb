@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @sighting.image %>
+
+<p>
+  <strong>Date:</strong>
+  <%= @sighting.date %>
+</p>
+
 <p>
   <strong>Weather:</strong>
   <%= @sighting.weather %>
@@ -11,13 +18,13 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @sighting.date %>
+  <strong>Species:</strong>
+  <%= @sighting.species %>
 </p>
 
 <p>
-  <strong>Species:</strong>
-  <%= @sighting.species %>
+  <strong>Street address:</strong>
+  <%= @sighting.street_address %>
 </p>
 
 <p>
@@ -30,4 +37,4 @@
   <%= @sighting.longitude %>
 </p>
 
-<%= link_to 'Back', sightings_path %>
+<%= link_to 'Back', admin_sightings_path %>

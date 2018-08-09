@@ -1,0 +1,43 @@
+<%= image_tag @sighting.image %>
+
+<p>
+  <strong>Date:</strong>
+  <%= @sighting.date %>
+</p>
+
+<p>
+  <strong>Weather:</strong>
+  <%= @sighting.weather %>
+</p>
+
+<p>
+  <strong>Habitat:</strong>
+  <%= @sighting.habitat %>
+</p>
+
+<p>
+  <strong>Species:</strong>
+  <%= @sighting.species %>
+</p>
+
+<p>
+  <strong>Street address:</strong>
+  <%= @sighting.street_address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @sighting.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @sighting.longitude %>
+</p>
+
+<p>
+  <strong>Submitted by:</strong>
+  <%= @sighting.user.name %>
+</p>
+
+<%= link_to 'Back', admin_sightings_path %>

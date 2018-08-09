@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'turbolinks', '~> 5.1.0'
 gem 'coffee-rails'
 gem "sassc"
+gem 'image_processing', '~> 1.2'
 
 gem 'devise_token_auth'
 gem 'koala'
